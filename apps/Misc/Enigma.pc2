@@ -1,0 +1,69 @@
+DEF A - Encrypt text
+DEF D - Decrypt text
+
+The cypher is a simple polyalphabetic cypher with a rot-13 thrown in just for fun.
+
+Text is limited to 80 chars (limitation of the PC-2) but since it takes so long to encrypt, I doubt anyone will hit that.
+
+The aa() array is used so that we only encrypt to values that are enterable on the keyboard - otherwise we can't enter the values to decrypt.
+
+10 "A" gosub 610:Wait 0
+20 input a$(0)
+30 for i = 1 to len(a$(0))
+40 a= asc(mid$(a$(0),i,1)): gosub "L": a=e: gosub "F"
+45 a$(1)=a$(1)+chr$ e
+50 gosub "Z"
+55 cursor 0:print a$(1)
+60 next i
+70 wait:print a$(1)
+80 end
+
+110 "D" gosub 610
+120 input a$(0)
+130 for i = 1 to len(a$(0))
+140 a= asc(mid$(a$(0),i,1)): gosub "S": a=e: gosub "F"
+145 a$(1)=a$(1)+chr$ e
+150 gosub "Z"
+160 next i
+170 print a$(1)
+180 end
+
+200 :rem encrypt with current rotor value
+210 "L" gosub 810:e=b+r
+220 if e > 83 LET e=e-84
+230 return
+
+300 :rem decrypt with current rotor value
+310 "S" gosub 810: e=b-r
+320 if e < 0 LET e=e+84
+330 return
+
+400 :rem reflector
+410 "F" e=a+84/2
+420 if e > 83 LET e=e-84
+430 e=aa(e):return
+
+500 :rem rotate rotor
+510 "Z" r=r+1: if r >83 LET r=0
+520 return
+
+600 : rem setup
+610 clear: dim aa(83), a$(1)*80:restore
+620 input "Start value:";r
+630 for i = 0 to 83: read aa(i): next i:return
+640 DATA 32,33,35,36,37,38,40,41,42
+650 DATA 43,44,45,46,47,48,49,50,51,52
+660 DATA 53,54,55,56,57,58,59,60,61,62
+670 DATA 63,64,65,66,67,68,69,70,71,72
+680 DATA 73,74,75,76,77,78,79,80,81,82
+690 DATA 83,84,85,86,87,88,89,90,94,97
+700 DATA 98,99,100,101,102,103,104,105,106
+710 DATA 107,108,109,110,111,112,113,114,115
+720 DATA 116,117,118,119,120,121,122
+730 return
+
+800 :rem lookup
+810 for ii =0 to 83: b = ii
+820 if aa(ii)=a then return
+830 next ii
+840 return 0

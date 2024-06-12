@@ -1,0 +1,61 @@
+A$ - user input
+A  - Additive from data
+F$ - Input unit from user
+M$ - Input unit from data
+M  - Multiplier from data
+N$ - Output unit from data
+P$ - Output to printer = "P"
+R  - Result of conversion
+T$ - Output unit from user
+V = Value to convert from user
+
+1310 "C" CLEAR:USING:WAIT 90:ON ERROR GOTO 1690
+1320 PRINT "METRIC UNITS CONVERSION":WAIT 
+1330 A$="":INPUT "List known units? (Y/N) ";A$
+1340 IF A$="N" THEN 1370
+1350 IF A$<>"Y"THEN 1330
+1360 PRINT "YD-M FT-CM MI-KM LB-KG":PRINT "OZ-GM PT,QT,GAL,CP-L"
+1361 PRINT "BTU-CAL DEGF-DEGC"
+1370 P$="":WAIT 0:PRINT CHR$ 34;"P";CHR$ 34;:WAIT 
+1371 INPUT " to print, ENTER ";P$:IF P$="P" TEXT :CSIZE 1
+1380 CLS :F$="":T$="":INPUT "From unit? ";F$
+1390 INPUT "To unit? ";T$
+1400 INPUT "Value?";V:GOSUB 1500:GOTO 1300
+1410 END
+1420 PRINT "Invalid unit ";M$;" ";n$: goto 1380
+
+REM CALCULATE
+1500 RESTORE 1700
+1510 READ M$,A,M,N$:IF M$ = "EOD" THEN 1420
+1530 IF M$=F$ AND N$=T$ GOTO 1560
+1540 IF M$=T$ AND N$=F$ GOTO 1600
+1550 GOTO 1510
+
+REM FROM -> TO
+1560 R=(V+A)*M
+1570 PRINT V;" "; M$ ;" =";R;" ";N$
+1580 IF P$="P" LPRINT V;" "; M$ ;" =";R;" ";N$
+1590 GOTO 1330
+
+REM TO -> FROM
+1600 R=V/M-A
+1610 PRINT V;" "; N$ ;" =";R;" ";M$
+1620 IF P$="P" LPRINT V;" "; N$ ;" =";R;" ";M$
+1630 GOTO 1330
+
+REM Error handler
+1690 PRINT "*** ERROR";PEEK &789B;" in";STATUS 4;" ***":GOTO 1330
+
+From unit, conversion add, conversion multiplier, to unit
+1700 DATA "YD",    0,0.9144,    "M"
+1701 DATA "FT",    0,30.48,     "CM"
+1702 DATA "MI",    0,1.609344,  "KM"
+1703 DATA "LB",    0,0.45359237,"KG"
+1704 DATA "OZ",    0,28.349523, "GM"
+1705 DATA "PT",    0,0.4731632, "L"
+1706 DATA "QT",    0,0.9463264, "L"
+1707 DATA "GAL",   0,3.785306,  "L"
+1708 DATA "CP",    0,0.2365816, "L"
+1709 DATA "BTU",   0,251.99576, "CAL"
+1710 DATA "DEGF",-32,0.55555,   "DEGC"
+1799 DATA "EOD",   0,0,         "EOD"

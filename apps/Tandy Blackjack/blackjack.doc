@@ -1,0 +1,18 @@
+BLACKJACK
+
+CLOAD "BLACKJACK"
+DEF SPACE
+The object of the game is to get 21, or close to 21 points, without going over 21 ("busting"). Another rewarding goal can be winning large sums of money.
+
+At the start of the game you have a bankroll of $100. Yukon Jacques (PC-2) will ask for your wager. You can bet any amount, up to your entire bankroll. Use the number keys to type your wager, then press ENTER.
+Yukon Jacques will deal you (and himself) two cards; the first face-down and the second face-up. These are called the down-card and the up-card. You will be shown both of your cards and the dealer's up-card. These cards will show for about 4 seconds.
+Each card has a point value; cards 2 though 9 are worth 2 trough 9 points; tens and face cards are worth 10 points. Aces are worth one or eleven points; the computer will decide the value of aces.
+If your first two cards total 21 points, you "Blackjack". You win the hand and get 3:2 odds on your wager. If Jacques gets 21.he wins. If neither you or Jacques Blackjacks, you will be asked:
+(S)tand (H)it or (D)ouble?
+Press <S> to Stand, <H> to take a Hit (another card), or <D> to Double.
+
+Stand when you are satisfied with your hand. The dealer will take hits or stand, then show his down-card. The high score will win the pot, then the next hand will start.
+Take a Hit to get another card and raise your points (hopefully without busting).
+Press <D> to double the stakes and get one more card. You may double only before hits are taken. Jacques will take hits or stand. The high score wins, then the next hand will start. "Push" means tie. When you and Jacques tie, neither wager is win or lost.
+
+The games ends when you run out of money.

@@ -1,0 +1,20 @@
+PC-2 Math Pak II: (c) 1982 Tandy Corporation. All rights reserved.
+
+"Math Pak II" consists of four programs:
+
+1. SIMEQ - Linear simultaneous equations.
+2. GAUSS - Gaussian matrix reduction.
+3. MATINV - Matrix inversion.
+4. MATMUL - Matrix multiplication.
+
+The function of these programs are:
+
+SIMEQ solves systems of up to 7 linear simultaneous equations for all unknowns. It can also be used to complete a Gaussian reduction of matrices from 2x2 to 7x7.
+
+GAUSS completes a Gaussian reduction of a square matrix from 3x3 to 10x10, displays the reduced matrix, and calculates its determinant.
+
+MATINV calculates the inverse of a square matrix, from 3x3 to 6x6.
+
+MATMUL multiplies an IxJ matrix by a JxK matrix, displaying an IxK matrix as the product. IJ + JK must be less than or equal to 98.
+
+
